@@ -13,45 +13,51 @@
 <main>
     <div class="wrapper">
     <section class="grid-container">
-        <div class="slider-item postion-y">
-            <header class="slider-header"></header>
+        <div class="slider-item postion-y-container">
+            <!-- Use label instead of heading as funciton relates to input form. -->
+            <label class="slider-label"></label>
+            <!-- Values placed in div tag as multiple values needed. -->
             <div class="slider-values"></div>
-            <div class="slider"></div>
+            <!-- Name tags neccessary to link with label. -->
+            <input type="range" name="position-y" class="position-y-slider" max="600" min="0" value="0">
         </div>
-        <div class="slider-item postion-x">
-            <header class="slider-header"></header>
+        <div class="slider-item position-x-container">
+            <label class="slider-label"></label>
             <div class="slider-values"></div>
-            <div class="slider"></div>
+            <input type="range" name="position-x" class="position-x-slider" max="800" min="0" value="0">
+            <span class="output"></span>
         </div>
-        <div class="slider-item size">
-            <header class="slider-header"></header>
+        <div class="slider-item size-container">
+            <label class="slider-label"></label>
             <div class="slider-values"></div>
-            <div class="slider"></div>
+            <input type="range" name="size" class="size-slider" max="2" min="0" value="0">
         </div>
-        <div class="slider-item opacity">
-            <header class="slider-header"></header>
+        <div class="slider-item opacity-container">
+            <label class="slider-label"></label>
             <div class="slider-values"></div>
-            <div class="slider"></div>
+            <!-- Step 0.01 added so that slider will scale in decimal places. -->
+            <input type="range" name="opacity" class="opacity-slider" max="1" min="0" step="0.01" value="1">
         </div>
-        <div class="slider-item opacity">
-            <header class="slider-header"></header>
+        <div class="slider-item shape-type-container">
+            <label class="slider-label"></label>
             <div class="slider-values"></div>
-            <div class="slider"></div>
+            <input type="" name="shape" class="shape-type-selector">
         </div>
-        <div class="slider-item shape-type">
-            <header class="slider-header"></header>
+        <div class="slider-item hex-container">
+            <label class="slider-label"></label>
             <div class="slider-values"></div>
-            <div class="slider"></div>
+            <input type="" name="hex" class="hex-input">
         </div>
-        <div class="slider-item hex">
-            <header class="slider-header"></header>
+        <div class="slider-item rgba-container">
+            <label class="slider-label">RGBA
             <div class="slider-values"></div>
-            <div class="slider"></div>
-        </div>
-        <div class="slider-item rgba">
-            <header class="slider-header"></header>
-            <div class="slider-values"></div>
-            <div class="slider"></div>
+            <!-- Ok to have multiple input tags with same name -->
+            <input type="range" name="rgba" class="r-slider" max="255" min="0" value="0">
+            <input type="range" name="rgba" class="g-slider" max="255" min="0" value="0">
+            <input type="range" name="rgba" class="b-slider" max="255" min="0" value="0">
+            <input type="range" name="rgba" class="a-slider" max="1" min="0" step="0.01" value="1">
+            </div>
+            </label>
         </div>
     </section>
     <div class="object-container">
