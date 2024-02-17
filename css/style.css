@@ -143,7 +143,7 @@ table {
 
 .wrapper {
    max-width: 100%;
-   height: 40%;
+   height: 45vh;
 }
 
 span {
@@ -158,7 +158,8 @@ span {
       "three four"
       "five six"
       "seven seven";
-   width: 100%;
+   width: 100%; 
+   height: 100%;  
    display: grid;
    padding: 0.5em;
    gap: 1em;
@@ -169,7 +170,6 @@ span {
 
 .slider-item {
    max-width: 100%;
-   height: 5em;
    border-radius: 1em;
    background: linear-gradient(
       0deg,
@@ -214,17 +214,20 @@ input {
 
 main {
    max-width: 100%;
-   height: 50em;
+   height: 55vh;
    background-color: blue;
 }
 
 .object-container {
+   position: relative;
+   width: 100%;
 	height: 100%;
 }
 
 .object {
-	width: 6em;
-	height: 6em;
+   position: absolute;
+	width: 100px;
+	height: 100px;
 	border-radius: 0.5em;
 	background-color: red;
 	border: 0.1em solid black;
