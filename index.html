@@ -17,12 +17,12 @@
             <!-- Values placed in div tag as multiple values needed. -->
             <div class="slider-values"></div>
             <!-- Name tags neccessary to link with label. -->
-            <input type="range" name="position-y" id="position-y-slider" max="44" min="0" value="0">
+            <input type="range" name="position-y" id="position-y-slider" max="40" min="0" value="0">
         </div>
         <div class="slider-item position-x-container">
             <label class="slider-label" for="position-x-slider"></label>
             <div class="slider-values"></div>
-            <input type="range" name="position-x" id="position-x-slider" max="100" min="0" value="0">
+            <input type="range" name="position-x" id="position-x-slider" max="92" min="0" value="0">
             <span class="output"></span>
         </div>
         <div class="slider-item size-container">
@@ -39,7 +39,11 @@
         <div class="slider-item shape-type-container">
             <label class="slider-label" for="shape-type-selector"></label>
             <div class="slider-values"></div>
-            <input type="" name="shape" id="shape-type-selector">
+            <select name="shape" id="shape-type-selector">
+                <option value="square">Square</option>
+                <option value="circle">Circle</option>
+                <option value="triangle">Triangle</option>
+            </select>
         </div>
         <div class="slider-item hex-container">
             <label class="slider-label" for="hex-input"></label>
@@ -63,6 +67,8 @@
     <div class="object-container">
         <div class="object"></div>
         </div>
+        <div id="test-triangle" style="width: 100px; height: 100px; background-color: red; clip-path: polygon(50% 0%, 0% 100%, 100% 100%);"></div>
+
 </main>  
 <script src="javascript/script.js"></script>
 </body>
