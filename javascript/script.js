@@ -12,6 +12,8 @@ const sizeSlider = document.querySelector("#size-slider");
 
 const opacitySlider = document.querySelector("#opacity-slider");
 
+const shapeTypeSelector = document.querySelector("#shape-type-selector");
+
 output.textContent = positionXSlider.value;
 
 positionXSlider.addEventListener("input", function () {
@@ -31,6 +33,11 @@ positionYSlider.addEventListener("input", function () {
    let maxObjectMovement = Math.min(this.value, maxYSliderValue);
    //Apply the chosen value as a marginTop style to the objectin percentage form.
    object.style.marginTop = maxObjectMovement + "vh";
+   const triangleShadow = document.querySelector(".triangle-shadow");
+   if (triangleShadow) {
+      // Correctly checks if triangleShadow exists
+      triangleShadow.style.marginTop = maxObjectMovement + "vh";
+   }
 });
 
 // Manipulate Object on X-Axis
@@ -41,6 +48,11 @@ positionXSlider.addEventListener("input", function () {
    const maxXSliderValue = 100 - objectWidthPercent;
    let maxObjectMovement = Math.min(this.value, maxXSliderValue);
    object.style.marginLeft = maxObjectMovement + "%";
+   const triangleShadow = document.querySelector(".triangle-shadow");
+   if (triangleShadow) {
+      // Correctly checks if triangleShadow exists
+      triangleShadow.style.marginLeft = maxObjectMovement + "%";
+   }
 });
 
 //Manipulate Object Size
@@ -58,4 +70,59 @@ sizeSlider.addEventListener("input", function () {
 
 opacitySlider.addEventListener("input", function () {
    object.style.opacity = parseFloat(this.value);
+});
+
+//Manipulate Object Shape
+
+shapeTypeSelector.addEventListener("change", function () {
+   switch (this.value) {
+      case "square":
+         //Need to specify styles for square so they reload if it is switched to from another option.
+         object.style.width = "100px";
+         object.style.height = "100px";
+         object.style.clipPath = "none";
+         object.style.borderRadius = "0.5em";
+         object.style.backgroundColor = "red";
+         object.style.border = "0.1em solid black";
+         object.style.boxShadow =
+            "0.15em 0.15em 0.15em 0.15em rgba(38, 38, 38, 1)";
+         triangleShadow.style.visibility = hidden;
+         break;
+      case "circle":
+         object.style.width = "100px";
+         object.style.height = "100px";
+         object.style.clipPath = "none";
+         object.style.borderRadius = "50%";
+         object.style.backgroundColor = "red";
+         object.style.border = "0.1em solid black";
+         object.style.boxShadow =
+            "0.15em 0.15em 0.15em 0.15em rgba(38, 38, 38, 1)";
+         triangleShadow.style.visibility = hidden;
+         break;
+      case "triangle":
+         object.style.width = "100px";
+         object.style.height = "100px";
+         object.style.clipPath = "polygon(50% 0%, 0% 100%, 100% 100%)";
+         object.style.borderRadius = "0px";
+         object.style.backgroundColor = "red";
+         object.style.zIndex = "11";
+         //Method which creates a shadow element and places it
+         //behind the object div.
+         const triangleShadow = document.createElement("div");
+         triangleShadow.classList.add("triangle-shadow");
+         triangleShadow.style.width = "100px";
+         triangleShadow.style.height = "100px";
+         triangleShadow.style.position = "absolute";
+         triangleShadow.style.top = "0.06em";
+         triangleShadow.style.left = "0.10em";
+         triangleShadow.style.backgroundColor = "transparent";
+         triangleShadow.style.borderRadius = "0px";
+         triangleShadow.style.filter = "blur(0.1em)";
+         triangleShadow.style.borderBottom = "105px solid rgba(38, 38, 38, 1)";
+         triangleShadow.style.borderLeft = "55px solid transparent";
+         triangleShadow.style.borderRight = "52.5px solid transparent";
+         triangleShadow.style.zIndex = "10";
+         objectContainer.appendChild(triangleShadow);
+         break;
+   }
 });
