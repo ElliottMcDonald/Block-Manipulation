@@ -165,7 +165,7 @@ span {
    gap: 1em;
    margin-inline: auto;
    background-color: rgb(248, 244, 182);
-   border-bottom: 0.25em solid rgb(106, 106, 106);
+   border-bottom: 0.15em solid rgb(12, 12, 12);
 }
 
 .slider-item {
@@ -232,4 +232,8 @@ main {
 	background-color: red;
 	border: 0.1em solid black;
 	box-shadow: 0.15em 0.15em 0.15em 0.15em rgba(38, 38, 38, 1);
+}
+
+.triangle-shadow {
+   position: absolute;
 }
