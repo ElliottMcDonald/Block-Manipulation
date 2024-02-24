@@ -75,6 +75,7 @@ opacitySlider.addEventListener("input", function () {
 //Manipulate Object Shape
 
 shapeTypeSelector.addEventListener("change", function () {
+   let triangleShadow = document.querySelector(".triangle-shadow");
    switch (this.value) {
       case "square":
          //Need to specify styles for square so they reload if it is switched to from another option.
@@ -86,7 +87,9 @@ shapeTypeSelector.addEventListener("change", function () {
          object.style.border = "0.1em solid black";
          object.style.boxShadow =
             "0.15em 0.15em 0.15em 0.15em rgba(38, 38, 38, 1)";
-         triangleShadow.style.visibility = hidden;
+         if (triangleShadow) {
+            triangleShadow.style.visibility = "hidden";
+         }
          break;
       case "circle":
          object.style.width = "100px";
@@ -97,7 +100,7 @@ shapeTypeSelector.addEventListener("change", function () {
          object.style.border = "0.1em solid black";
          object.style.boxShadow =
             "0.15em 0.15em 0.15em 0.15em rgba(38, 38, 38, 1)";
-         triangleShadow.style.visibility = hidden;
+         triangleShadow.style.visibility = "hidden";
          break;
       case "triangle":
          object.style.width = "100px";
@@ -108,8 +111,13 @@ shapeTypeSelector.addEventListener("change", function () {
          object.style.zIndex = "11";
          //Method which creates a shadow element and places it
          //behind the object div.
-         const triangleShadow = document.createElement("div");
-         triangleShadow.classList.add("triangle-shadow");
+         if (!triangleShadow) {
+            triangleShadow = document.create;
+            triangleShadow = document.createElement("div");
+            triangleShadow.classList.add("triangle-shadow");
+            objectContainer.appendChild(triangleShadow);
+         }
+         triangleShadow.style.visibility = "visible";
          triangleShadow.style.width = "100px";
          triangleShadow.style.height = "100px";
          triangleShadow.style.position = "absolute";
@@ -122,7 +130,6 @@ shapeTypeSelector.addEventListener("change", function () {
          triangleShadow.style.borderLeft = "55px solid transparent";
          triangleShadow.style.borderRight = "52.5px solid transparent";
          triangleShadow.style.zIndex = "10";
-         objectContainer.appendChild(triangleShadow);
          break;
    }
 });
