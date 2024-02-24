@@ -180,6 +180,10 @@ span {
    box-shadow: 0.1em 0.1em 0.1em 0.1em rgba(38, 38, 38, 1);
 }
 
+#hex-input {
+   position: relative;
+}
+
 .slider-item:nth-child(1) {
    grid-area: one;
 }

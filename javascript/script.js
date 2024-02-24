@@ -14,6 +14,12 @@ const opacitySlider = document.querySelector("#opacity-slider");
 
 const shapeTypeSelector = document.querySelector("#shape-type-selector");
 
+const hexInput = document.querySelector("#hex-input");
+
+const hexItem = document.querySelector("slider-item hex-container");
+
+const submitHexInput = document.querySelector("#submit-hex-input");
+
 output.textContent = positionXSlider.value;
 
 positionXSlider.addEventListener("input", function () {
@@ -112,7 +118,6 @@ shapeTypeSelector.addEventListener("change", function () {
          //Method which creates a shadow element and places it
          //behind the object div.
          if (!triangleShadow) {
-            triangleShadow = document.create;
             triangleShadow = document.createElement("div");
             triangleShadow.classList.add("triangle-shadow");
             objectContainer.appendChild(triangleShadow);
@@ -131,5 +136,38 @@ shapeTypeSelector.addEventListener("change", function () {
          triangleShadow.style.borderRight = "52.5px solid transparent";
          triangleShadow.style.zIndex = "10";
          break;
+   }
+});
+
+//Colour Object According to Hex-Input
+
+const incorrectHexInput = document.createElement("div");
+incorrectHexInput.classList.add("incorrect-hex-input");
+hexItem.appendChild(incorrectHexInput);
+incorrectHexInput.style.position = "absolute";
+incorrectHexInput.style.width = "100%";
+incorrectHexInput.style.height = "3em";
+
+//Content CSS property not applicable to HTML elements directly through the style property.
+incorrectHexInput.style.visibility = "hidden";
+
+hexInput.addEventListener("input", function () {
+   if (!/^[0-9a-fA-F]+$/.test(hexInput.value)) {
+      incorrectHexInput.textContent =
+         "Please enter a value between a-f and 0-9";
+      incorrectHexInput.style.visibility = "visible";
+   } else {
+      incorrectHexInput.style.visibility = "hidden";
+   }
+});
+
+submitHexInput.addEventListener("click", function () {
+   if (hexInput.value.length !== 6 && hexInput.value.length !== 3) {
+      incorrectHexInput.style.visibility = "visible";
+      incorrectHexInput.textContent =
+         "Please enter a value 3 or 6 characters in length";
+   } else {
+      incorrectHexInput.style.visibility = "hidden";
+      object.style.backgroundColor = "#" + hexInput.value;
    }
 });
