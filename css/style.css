@@ -182,6 +182,7 @@ span {
 
 #hex-input {
    position: relative;
+   border: 0.1em solid black;
 }
 
 .slider-item:nth-child(1) {

@@ -16,7 +16,7 @@ const shapeTypeSelector = document.querySelector("#shape-type-selector");
 
 const hexInput = document.querySelector("#hex-input");
 
-const hexItem = document.querySelector("slider-item hex-container");
+const hexItem = document.querySelector(".hex-container");
 
 const submitHexInput = document.querySelector("#submit-hex-input");
 
@@ -145,19 +145,27 @@ const incorrectHexInput = document.createElement("div");
 incorrectHexInput.classList.add("incorrect-hex-input");
 hexItem.appendChild(incorrectHexInput);
 incorrectHexInput.style.position = "absolute";
-incorrectHexInput.style.width = "100%";
-incorrectHexInput.style.height = "3em";
-
-//Content CSS property not applicable to HTML elements directly through the style property.
+incorrectHexInput.style.width = "10em";
+incorrectHexInput.style.padding = "0.1em";
+incorrectHexInput.style.textAlign = "center";
+incorrectHexInput.style.backgroundColor = "rgb(248, 244, 182)";
+incorrectHexInput.style.borderRadius = "0.5em";
+incorrectHexInput.style.border = "0.1em solid black";
 incorrectHexInput.style.visibility = "hidden";
 
 hexInput.addEventListener("input", function () {
-   if (!/^[0-9a-fA-F]+$/.test(hexInput.value)) {
+   if (hexInput.value.length === 0) {
+      incorrectHexInput.style.visibility = "hidden";
+      hexInput.style.border = "none";
+   } else if (!/^[0-9a-fA-F]+$/.test(hexInput.value)) {
+      //Content CSS property not applicable to HTML elements directly through the style property.
       incorrectHexInput.textContent =
          "Please enter a value between a-f and 0-9";
       incorrectHexInput.style.visibility = "visible";
+      hexInput.style.border = "0.25em solid red";
    } else {
       incorrectHexInput.style.visibility = "hidden";
+      hexInput.style.border = "0.1em solid black";
    }
 });
 
@@ -166,8 +174,10 @@ submitHexInput.addEventListener("click", function () {
       incorrectHexInput.style.visibility = "visible";
       incorrectHexInput.textContent =
          "Please enter a value 3 or 6 characters in length";
+      hexInput.style.border = "0.15em solid red";
    } else {
       incorrectHexInput.style.visibility = "hidden";
+      hexInput.style.border = "0.1em solid black";
       object.style.backgroundColor = "#" + hexInput.value;
    }
 });
