@@ -64,12 +64,29 @@ positionXSlider.addEventListener("input", function () {
 //Manipulate Object Size
 
 sizeSlider.addEventListener("input", function () {
-   scaleFactor = parseFloat(this.value);
+   const scaleFactor = parseFloat(this.value);
    //scaleFactor is * by 100 instead of object.clientHeight, as the latter
    //will increase the height exponentially. Using * 100 resets it each time
    //the slider moves.
-   object.style.width = scaleFactor * 100 + "px";
-   object.style.height = scaleFactor * 100 + "px";
+   const baseSize = 100;
+   const newSize = baseSize * scaleFactor;
+   function scale(item) {
+      item.style.width = newSize + "px";
+      item.style.height = newSize + "px";
+   }
+   scale(object);
+   const triangleShadow = document.querySelector(".triangle-shadow");
+   if (triangleShadow) {
+      triangleShadow.style.borderBottom =
+         105 * scaleFactor + "px solid rgba(38, 38, 38, 1)";
+      triangleShadow.style.borderLeft =
+         55 * scaleFactor + "px solid transparent";
+      triangleShadow.style.borderRight =
+         52.5 * scaleFactor + "px solid transparent";
+
+      triangleShadow.style.top = 0.06 * scaleFactor + "em";
+      triangleShadow.style.left = 0.1 * scaleFactor + "em";
+   }
 });
 
 //Manipulate Object Opacity
