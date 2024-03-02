@@ -28,7 +28,7 @@ positionXSlider.addEventListener("input", function () {
 
 // Manipulate Object on Y-Axis
 
-positionYSlider.addEventListener("input", function () {
+function yAxisManipulation() {
    //Convert objects width to percentage of container's width
    const objectHeightPercent =
       (object.clientHeight / objectContainer.clientHeight) * 100;
@@ -36,7 +36,7 @@ positionYSlider.addEventListener("input", function () {
    const maxYSliderValue = 100 - objectHeightPercent;
    //Take the slider's value unless it is greater than the maxSliderValue, if so
    //take that to stop object from going off screen.
-   let maxObjectMovement = Math.min(this.value, maxYSliderValue);
+   let maxObjectMovement = Math.min(positionYSlider.value, maxYSliderValue);
    //Apply the chosen value as a marginTop style to the objectin percentage form.
    object.style.marginTop = maxObjectMovement + "vh";
    const triangleShadow = document.querySelector(".triangle-shadow");
@@ -44,27 +44,35 @@ positionYSlider.addEventListener("input", function () {
       // Correctly checks if triangleShadow exists
       triangleShadow.style.marginTop = maxObjectMovement + "vh";
    }
+}
+
+positionYSlider.addEventListener("input", function () {
+   yAxisManipulation();
 });
 
 // Manipulate Object on X-Axis
 
-positionXSlider.addEventListener("input", function () {
+function xAxisManipulation() {
    const objectWidthPercent =
       (object.clientWidth / objectContainer.clientWidth) * 100;
    const maxXSliderValue = 100 - objectWidthPercent;
-   let maxObjectMovement = Math.min(this.value, maxXSliderValue);
+   let maxObjectMovement = Math.min(positionXSlider.value, maxXSliderValue);
    object.style.marginLeft = maxObjectMovement + "%";
    const triangleShadow = document.querySelector(".triangle-shadow");
    if (triangleShadow) {
       // Correctly checks if triangleShadow exists
       triangleShadow.style.marginLeft = maxObjectMovement + "%";
    }
+}
+
+positionXSlider.addEventListener("input", function () {
+   xAxisManipulation();
 });
 
 //Manipulate Object Size
 
-sizeSlider.addEventListener("input", function () {
-   const scaleFactor = parseFloat(this.value);
+function scaleItems() {
+   const scaleFactor = parseFloat(sizeSlider.value);
    //scaleFactor is * by 100 instead of object.clientHeight, as the latter
    //will increase the height exponentially. Using * 100 resets it each time
    //the slider moves.
@@ -87,6 +95,10 @@ sizeSlider.addEventListener("input", function () {
       triangleShadow.style.top = 0.06 * scaleFactor + "em";
       triangleShadow.style.left = 0.1 * scaleFactor + "em";
    }
+}
+
+sizeSlider.addEventListener("input", function () {
+   scaleItems();
 });
 
 //Manipulate Object Opacity
@@ -99,38 +111,39 @@ opacitySlider.addEventListener("input", function () {
 
 shapeTypeSelector.addEventListener("change", function () {
    let triangleShadow = document.querySelector(".triangle-shadow");
+
    switch (this.value) {
       case "square":
          //Need to specify styles for square so they reload if it is switched to from another option.
-         object.style.width = "100px";
-         object.style.height = "100px";
          object.style.clipPath = "none";
          object.style.borderRadius = "0.5em";
-         object.style.backgroundColor = "red";
+         object.style.backgroundColor = hexInput.value;
          object.style.border = "0.1em solid black";
          object.style.boxShadow =
             "0.15em 0.15em 0.15em 0.15em rgba(38, 38, 38, 1)";
+         scaleItems();
          if (triangleShadow) {
             triangleShadow.style.visibility = "hidden";
          }
          break;
       case "circle":
-         object.style.width = "100px";
-         object.style.height = "100px";
          object.style.clipPath = "none";
          object.style.borderRadius = "50%";
-         object.style.backgroundColor = "red";
+         object.style.backgroundColor = hexInput.value;
          object.style.border = "0.1em solid black";
          object.style.boxShadow =
             "0.15em 0.15em 0.15em 0.15em rgba(38, 38, 38, 1)";
-         triangleShadow.style.visibility = "hidden";
+         scaleItems();
+         if (triangleShadow) {
+            triangleShadow.style.visibility = "hidden";
+         }
          break;
       case "triangle":
          object.style.width = "100px";
          object.style.height = "100px";
          object.style.clipPath = "polygon(50% 0%, 0% 100%, 100% 100%)";
          object.style.borderRadius = "0px";
-         object.style.backgroundColor = "red";
+         object.style.backgroundColor = hexInput.value;
          object.style.zIndex = "11";
          //Method which creates a shadow element and places it
          //behind the object div.
@@ -152,6 +165,9 @@ shapeTypeSelector.addEventListener("change", function () {
          triangleShadow.style.borderLeft = "55px solid transparent";
          triangleShadow.style.borderRight = "52.5px solid transparent";
          triangleShadow.style.zIndex = "10";
+         yAxisManipulation();
+         xAxisManipulation();
+         scaleItems();
          break;
    }
 });
