@@ -117,7 +117,14 @@ shapeTypeSelector.addEventListener("change", function () {
          //Need to specify styles for square so they reload if it is switched to from another option.
          object.style.clipPath = "none";
          object.style.borderRadius = "0.5em";
-         object.style.backgroundColor = hexInput.value;
+         function setBackgroundColor() {
+            if (lastColorChange === "hex") {
+               object.style.backgroundColor = "# + hexInput.value";
+            } else if (lastColorChange === "rgba") {
+               object.style.backgroundColor = `rgba(${rSlider.value}, ${gSlider.value}, ${bSlider.value}, ${aSlider.value})`;
+            }
+         }
+         setBackgroundColor();
          object.style.border = "0.1em solid black";
          object.style.boxShadow =
             "0.15em 0.15em 0.15em 0.15em rgba(38, 38, 38, 1)";
@@ -129,7 +136,7 @@ shapeTypeSelector.addEventListener("change", function () {
       case "circle":
          object.style.clipPath = "none";
          object.style.borderRadius = "50%";
-         object.style.backgroundColor = hexInput.value;
+         setBackgroundColor();
          object.style.border = "0.1em solid black";
          object.style.boxShadow =
             "0.15em 0.15em 0.15em 0.15em rgba(38, 38, 38, 1)";
@@ -143,7 +150,7 @@ shapeTypeSelector.addEventListener("change", function () {
          object.style.height = "100px";
          object.style.clipPath = "polygon(50% 0%, 0% 100%, 100% 100%)";
          object.style.borderRadius = "0px";
-         object.style.backgroundColor = hexInput.value;
+         setBackgroundColor();
          object.style.zIndex = "11";
          //Method which creates a shadow element and places it
          //behind the object div.
@@ -174,6 +181,8 @@ shapeTypeSelector.addEventListener("change", function () {
 
 //Colour Object According to Hex-Input
 
+let lastColorChange;
+
 const incorrectHexInput = document.createElement("div");
 incorrectHexInput.classList.add("incorrect-hex-input");
 hexItem.appendChild(incorrectHexInput);
@@ -203,6 +212,7 @@ hexInput.addEventListener("input", function () {
 });
 
 submitHexInput.addEventListener("click", function () {
+   lastColorChange = "hex";
    if (hexInput.value.length !== 6 && hexInput.value.length !== 3) {
       incorrectHexInput.style.visibility = "visible";
       incorrectHexInput.textContent =
@@ -214,3 +224,42 @@ submitHexInput.addEventListener("click", function () {
       object.style.backgroundColor = "#" + hexInput.value;
    }
 });
+
+//Colour Object According to RGBA Sliders
+
+const rSlider = document.querySelector("#r-slider");
+const gSlider = document.querySelector("#g-slider");
+const bSlider = document.querySelector("#b-slider");
+const aSlider = document.querySelector("#a-slider");
+
+rSlider.addEventListener("change", function () {
+   lastColorChange = "rgba";
+   object.style.backgroundColor = `rgba(${this.value}, ${gSlider.value}, ${bSlider.value}, ${aSlider.value})`;
+});
+
+gSlider.addEventListener("change", function () {
+   lastColorChange = "rgba";
+   object.style.backgroundColor = `rgba(${rSlider.value}, ${this.value}, ${bSlider.value}, ${aSlider.value})`;
+});
+
+bSlider.addEventListener("change", function () {
+   lastColorChange = "rgba";
+   object.style.backgroundColor = `rgba(${rSlider.value}, ${gSlider.value}, ${this.value}, ${aSlider.value})`;
+});
+
+aSlider.addEventListener("change", function () {
+   lastColorChange = "rgba";
+   object.style.backgroundColor = `rgba(${rSlider.value}, ${gSlider.value}, ${bSlider.value}, ${this.value})`;
+});
+
+//  <div class="slider-item rgba-container">
+//             <label class="slider-label">RGBA
+//             <div class="slider-values"></div>
+//             <!-- Ok to have multiple input tags with same name -->
+//             <input type="range" name="rgba" class="r-slider" max="255" min="0" value="0">
+//             <input type="range" name="rgba" class="g-slider" max="255" min="0" value="0">
+//             <input type="range" name="rgba" class="b-slider" max="255" min="0" value="0">
+//             <input type="range" name="rgba" class="a-slider" max="1" min="0" step="0.01" value="1">
+//             </div>
+//             </label>
+//         </div>
