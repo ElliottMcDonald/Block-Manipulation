@@ -29,20 +29,30 @@ positionXSlider.addEventListener("input", function () {
 // Manipulate Object on Y-Axis
 
 function yAxisManipulation() {
-   //Convert objects width to percentage of container's width
-   const objectHeightPercent =
-      (object.clientHeight / objectContainer.clientHeight) * 100;
-   //Calculate max value of slider before object goes beyond container
-   const maxYSliderValue = 100 - objectHeightPercent;
-   //Take the slider's value unless it is greater than the maxSliderValue, if so
-   //take that to stop object from going off screen.
-   let maxObjectMovement = Math.min(positionYSlider.value, maxYSliderValue);
-   //Apply the chosen value as a marginTop style to the objectin percentage form.
-   object.style.marginTop = maxObjectMovement + "vh";
+   //The maximum value the object can be moved, taking into account its own size.
+   //Note even though objectContainer height is defined in vh, using
+   //clientHeight property reads its height in pixels.
+   const maxYValue = objectContainer.clientHeight - object.clientHeight;
+   //The slider value matches the percentage across the y-axis the shape needs
+   //to move. To make this into a pixel measurement which changes based on
+   //on the size of the container, we convert the slider's position to a
+   //decimal. Then times it by the maximum space space available in
+   //the container. This gives us the number of pixels to the object
+   //should be moved to match the slider percentage.
+   let sliderAsDecimal = positionYSlider.value / 100;
+   let proposedYPosition = maxYValue * sliderAsDecimal;
+   //Now move the object on the y-axis by either the calculated value or the
+   //maximum amount of space, whichever is smaller.
+   object.style.marginTop = Math.min(proposedYPosition, maxYValue) + "px";
+   //Reselect the triangle.shadow as it is created in a local scope elsewhere
+   //in the script.js file so the const triangleShadow is not accessible.
    const triangleShadow = document.querySelector(".triangle-shadow");
+   // Correctly checks if triangleShadow exists
    if (triangleShadow) {
-      // Correctly checks if triangleShadow exists
-      triangleShadow.style.marginTop = maxObjectMovement + "vh";
+      //Use object's client height to manipulate the triangle shadow element to
+      //ensure it moves in a synchronised manner.
+      triangleShadow.style.marginTop =
+         Math.min(proposedYPosition, maxYValue) + "px";
    }
 }
 
@@ -53,10 +63,19 @@ positionYSlider.addEventListener("input", function () {
 // Manipulate Object on X-Axis
 
 function xAxisManipulation() {
+   //Calculate the percentage of the container the object takes up.
    const objectWidthPercent =
       (object.clientWidth / objectContainer.clientWidth) * 100;
-   const maxXSliderValue = 100 - objectWidthPercent;
-   let maxObjectMovement = Math.min(positionXSlider.value, maxXSliderValue);
+   //As we are using the slider value to represent the percentage
+   //the object it moved, find the percentage of free space once the
+   //object is accounted for and set this as the max X axis movement to
+   //ensure the object does not beyond the container.
+   const maxXAxisMovement = 100 - objectWidthPercent;
+   //Set the maximum amount the object will move, either the slider
+   //value, or if this is too great, the max amount permitted to prevent
+   //it from going beyond the container. Make the a percentage and
+   //move the object to the left according to it.
+   let maxObjectMovement = Math.min(positionXSlider.value, maxXAxisMovement);
    object.style.marginLeft = maxObjectMovement + "%";
    const triangleShadow = document.querySelector(".triangle-shadow");
    if (triangleShadow) {
