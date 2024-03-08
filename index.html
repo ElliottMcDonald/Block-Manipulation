@@ -7,36 +7,35 @@
     <link rel="stylesheet" type="text/css" href="css/style.css">
 </head>
 <body>
-
     <div class="toolbar">
     <section class="grid-container">
-        <div class="slider-item postion-y-container">
+        <div class="slider-type item postion-y-container">
             <!-- Use label instead of heading as funciton relates to input form. -->
-            <label class="slider-label" for="position-y-slider"></label>
+            <label class="label" for="position-y-slider">Position Y</label>
             <!-- Values placed in div tag as multiple values needed. -->
             <div class="slider-values"></div>
             <!-- Name tags neccessary to link with label. -->
             <input type="range" name="position-y" id="position-y-slider" max="100" min="0" value="0">
         </div>
-        <div class="slider-item position-x-container">
-            <label class="slider-label" for="position-x-slider"></label>
+        <div class="slider-type item position-x-container">
+            <label class="label" for="position-x-slider">Position X</label>
             <div class="slider-values"></div>
             <input type="range" name="position-x" id="position-x-slider" max="100" min="0" value="0">
             <span class="output"></span>
         </div>
-        <div class="slider-item size-container">
-            <label class="slider-label" for="size-slider"></label>
+        <div class="slider-type item size-container">
+            <label class="label" for="size-slider">Size</label>
             <div class="slider-values"></div>
             <input type="range" name="size" id="size-slider" max="2" min="1" step="0.5" value="1">
         </div>
-        <div class="slider-item opacity-container">
-            <label class="slider-label" for="opacity-slider"></label>
+        <div class="slider-type item opacity-container">
+            <label class="label" for="opacity-slider">Opacity</label>
             <div class="slider-values"></div>
             <!-- Step 0.01 added so that slider will scale in decimal places. -->
             <input type="range" name="opacity" id="opacity-slider" max="1" min="0" step="0.01" value="1">
         </div>
-        <div class="slider-item shape-type-container">
-            <label class="slider-label" for="shape-type-selector"></label>
+        <div class="non-slider-type item shape-type-container">
+            <label class="label" for="shape-type-selector">Shape Type</label>
             <div class="slider-values"></div>
             <select name="shape" id="shape-type-selector">
                 <option value="square">Square</option>
@@ -44,20 +43,22 @@
                 <option value="triangle">Triangle</option>
             </select>
         </div>
-        <div class="slider-item hex-container">
-            <label class="slider-label" for="hex-input"></label>
+        <div class="non-slider-type item hex-container">
+            <label class="label" for="hex-input">HEX</label>
             <div class="slider-values"></div>
+            <div class="hex-form">
             <input type="text" name="hex" id="hex-input">
             <input type="submit" name="submit-hex-values" id="submit-hex-input" value="OK">
+            </div>
         </div>
-        <div class="slider-item rgba-container">
-            <label class="slider-label">RGBA
+        <div class="multi-slider-type item rgba-container">
+            <label class="label">RGBA
             <div class="slider-values"></div>
             <!-- Ok to have multiple input tags with same name -->
-            <input type="range" name="rgba" id="r-slider" max="255" min="0" value="0">
-            <input type="range" name="rgba" id="g-slider" max="255" min="0" value="0">
-            <input type="range" name="rgba" id="b-slider" max="255" min="0" value="0">
-            <input type="range" name="rgba" id="a-slider" max="1" min="0" step="0.01" value="1">
+            <label for="r-slider">r</label><input type="range" name="rgba" id="r-slider" max="255" min="0" value="0">
+            <label for="g-slider">g</label><input type="range" name="rgba" id="g-slider" max="255" min="0" value="0">
+            <label for="b-slider">b</label><input type="range" name="rgba" id="b-slider" max="255" min="0" value="0">
+            <label for="r-slider">a</label><input type="range" name="rgba" id="a-slider" max="1" min="0" step="0.01" value="1">
             </div>
             </label>
         </div>
