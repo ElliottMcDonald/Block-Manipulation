@@ -21,7 +21,6 @@
             <label class="label" for="position-x-slider">Position X</label>
             <div class="slider-values"></div>
             <input type="range" name="position-x" id="position-x-slider" max="100" min="0" value="0">
-            <span class="output"></span>
         </div>
         <div class="slider-type item size-container">
             <label class="label" for="size-slider">Size</label>
@@ -53,12 +52,12 @@
         </div>
         <div class="multi-slider-type item rgba-container">
             <label class="label">RGBA
-            <div class="slider-values"></div>
             <!-- Ok to have multiple input tags with same name -->
-            <label for="r-slider">r</label><input type="range" name="rgba" id="r-slider" max="255" min="0" value="0">
-            <label for="g-slider">g</label><input type="range" name="rgba" id="g-slider" max="255" min="0" value="0">
-            <label for="b-slider">b</label><input type="range" name="rgba" id="b-slider" max="255" min="0" value="0">
-            <label for="r-slider">a</label><input type="range" name="rgba" id="a-slider" max="1" min="0" step="0.01" value="1">
+            <div class="rgba-slider-group">
+            <div class="input-wrapper"><label for="r-slider">r</label><input type="range" name="rgba" id="r-slider" max="255" min="0" value="0"></div>
+            <div class="input-wrapper"><label for="g-slider">g</label><input type="range" name="rgba" id="g-slider" max="255" min="0" value="0"></div>
+            <div class="input-wrapper"><label for="b-slider">b</label><input type="range" name="rgba" id="b-slider" max="255" min="0" value="0"></div>
+            <div class="input-wrapper"> <label for="a-slider">a</label><input type="range" name="rgba" id="a-slider" max="1" min="0" step="0.01" value="1"></div>
             </div>
             </label>
         </div>

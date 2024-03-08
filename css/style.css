@@ -209,11 +209,11 @@ label {
    border: 0.1em solid black;
 }
 
-/* .rgba-container>input {
+.rgba-slider-group {
    display: grid;
-   grid-template-columns: 1fr 1fr;
-   grid-template-rows: 1fr 1fr;
-} */
+   gap: 0.5em;
+   grid-template-columns: repeat(2, 1fr);
+}
 
 input {
    max-width: 10em;
@@ -312,6 +312,12 @@ main {
    padding: 0em 0.25em;
 }
 
+.rgba-slider-group {
+   display: grid;
+   gap: 0.5em;
+   grid-template-columns: repeat(4, 1fr);
+}
+
 main {
    height: 70vh;
 }
@@ -344,11 +350,16 @@ main {
    }
 
 .toolbar {
-   height: 20vh;
+   height: 23vh;
 }
 
 .slider-type {
    flex-direction: row;
+}
+
+
+.slider-type>label {
+   padding: 0em 0.5em 0em;
 }
 
 .shape-type-container>label {
@@ -359,12 +370,18 @@ main {
    padding: 0em 0.25em;
 }
 
+.rgba-slider-group {
+   display: grid;
+   gap: 0.5em;
+   grid-template-columns: repeat(1, 1fr);
+}
+
 main {
-   height: 80vh;
+   height: 77vh;
 }
 
 .container-wrapper {
-   height: 75vh;
+   height: 72vh;
 }
 
 .object-container {
