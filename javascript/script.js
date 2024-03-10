@@ -20,8 +20,6 @@ const hexItem = document.querySelector(".hex-container");
 
 const submitHexInput = document.querySelector("#submit-hex-input");
 
-output.textContent = positionXSlider.value;
-
 // Manipulate Object on Y-Axis
 
 function yAxisManipulation() {

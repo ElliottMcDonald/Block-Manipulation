@@ -13,25 +13,49 @@
             <!-- Use label instead of heading as funciton relates to input form. -->
             <label class="label" for="position-y-slider">Position Y</label>
             <!-- Values placed in div tag as multiple values needed. -->
-            <div class="slider-values"></div>
+            <div class="labelled-input-container">
+            <div class="value-container">
+                <div class="value">0</div>
+                <div class="value">50</div>
+                <div class="value">100</div>
+            </div>
             <!-- Name tags neccessary to link with label. -->
             <input type="range" name="position-y" id="position-y-slider" max="100" min="0" value="0">
+            </div>
         </div>
         <div class="slider-type item position-x-container">
             <label class="label" for="position-x-slider">Position X</label>
-            <div class="slider-values"></div>
+            <div class="labelled-input-container">
+                <div class="value-container">
+                    <div class="value">0</div>
+                    <div class="value">50</div>
+                    <div class="value">100</div>
+                </div>
             <input type="range" name="position-x" id="position-x-slider" max="100" min="0" value="0">
+            </div>
         </div>
         <div class="slider-type item size-container">
             <label class="label" for="size-slider">Size</label>
-            <div class="slider-values"></div>
+            <div class="labelled-input-container">
+                <div class="value-container">
+                <div class="value">1</div>
+                <div class="value">1.5</div>
+                <div class="value">2</div>
+                </div>
             <input type="range" name="size" id="size-slider" max="2" min="1" step="0.5" value="1">
+            </div>
         </div>
         <div class="slider-type item opacity-container">
             <label class="label" for="opacity-slider">Opacity</label>
-            <div class="slider-values"></div>
+            <div class="labelled-input-container">
+                <div class="value-container">
+                    <div class="value">0</div>
+                    <div class="value">0.5</div>
+                    <div class="value">1</div>
+                </div>
             <!-- Step 0.01 added so that slider will scale in decimal places. -->
             <input type="range" name="opacity" id="opacity-slider" max="1" min="0" step="0.01" value="1">
+            </div>
         </div>
         <div class="non-slider-type item shape-type-container">
             <label class="label" for="shape-type-selector">Shape Type</label>

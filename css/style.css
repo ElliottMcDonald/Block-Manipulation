@@ -174,7 +174,7 @@ span {
    background: linear-gradient(
       0deg,
       rgba(10, 10, 10, 1) 0%,
-      rgba(144, 144, 144, 1) 48%,
+      #4b4b4b 48%,
       rgba(38, 38, 38, 1) 100%
    );
    box-shadow: 0.1em 0.1em 0.1em 0.1em rgba(38, 38, 38, 1);
@@ -185,6 +185,23 @@ label {
    font-size: 1em;
    color: white;
 }
+
+.labelled-input-container {
+  
+}
+
+.value-container {
+   display: flex;
+   justify-content: space-between;
+   padding: 0em 0.3em;
+}
+
+.value {
+   color: white;
+   font-weight: bold;
+   font-size: 0.75rem;
+}
+
 
 .shape-type-container>label {
    padding: 0em 0.5em 0.5em;
@@ -281,7 +298,7 @@ main {
 	width: 100px;
 	height: 100px;
 	border-radius: 0.5em;
-	background-color: red;
+	background-color: #ff0000;
 	border: 0.1em solid black;
 	box-shadow: 0.15em 0.15em 0.15em 0.15em rgba(38, 38, 38, 1);
 }
@@ -312,6 +329,10 @@ main {
    padding: 0em 0.25em;
 }
 
+.multi-slider-type {
+   text-align: center;
+}
+
 .rgba-slider-group {
    display: grid;
    gap: 0.5em;
@@ -337,6 +358,17 @@ main {
       "four five six"
       "seven seven seven";
 }
+}
+
+@media (min-width: 55em) {
+   .slider-type {
+      flex-direction: row;
+      justify-content: space-around;
+   }
+
+   label {
+      padding: 0.5em;
+   }
 }
 
 @media (min-width: 70em) {
@@ -385,7 +417,7 @@ main {
 }
 
 .object-container {
-   height: 75vh;
+   height: 72vh;
 }
 }
 
