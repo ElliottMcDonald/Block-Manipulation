@@ -4,21 +4,21 @@ const objectContainer = document.querySelector(".object-container");
 
 const output = document.querySelector(".output");
 
-const positionXSlider = document.querySelector("#position-x-slider");
+const positionXSlider = document.getElementById("position-x-slider");
 
-const positionYSlider = document.querySelector("#position-y-slider");
+const positionYSlider = document.getElementById("position-y-slider");
 
-const sizeSlider = document.querySelector("#size-slider");
+const sizeSlider = document.getElementById("size-slider");
 
-const opacitySlider = document.querySelector("#opacity-slider");
+const opacitySlider = document.getElementById("opacity-slider");
 
-const shapeTypeSelector = document.querySelector("#shape-type-selector");
+const shapeTypeSelector = document.getElementById("shape-type-selector");
 
-const hexInput = document.querySelector("#hex-input");
+const hexInput = document.getElementById("hex-input");
 
 const hexItem = document.querySelector(".hex-container");
 
-const submitHexInput = document.querySelector("#submit-hex-input");
+const submitHexInput = document.getElementById("submit-hex-input");
 
 // Manipulate Object on Y-Axis
 
@@ -50,9 +50,7 @@ function yAxisManipulation() {
    }
 }
 
-positionYSlider.addEventListener("input", function () {
-   yAxisManipulation();
-});
+positionYSlider.addEventListener("input", () => yAxisManipulation());
 
 // Manipulate Object on X-Axis
 
@@ -78,9 +76,7 @@ function xAxisManipulation() {
    }
 }
 
-positionXSlider.addEventListener("input", function () {
-   xAxisManipulation();
-});
+positionXSlider.addEventListener("input", () => xAxisManipulation());
 
 //Manipulate Object Size
 
@@ -110,9 +106,7 @@ function scaleItems() {
    }
 }
 
-sizeSlider.addEventListener("input", function () {
-   scaleItems();
-});
+sizeSlider.addEventListener("input", () => scaleItems());
 
 //Manipulate Object Opacity
 
@@ -240,39 +234,15 @@ submitHexInput.addEventListener("click", function () {
 
 //Colour Object According to RGBA Sliders
 
-const rSlider = document.querySelector("#r-slider");
-const gSlider = document.querySelector("#g-slider");
-const bSlider = document.querySelector("#b-slider");
-const aSlider = document.querySelector("#a-slider");
+const rSlider = document.getElementById("r-slider");
+const gSlider = document.getElementById("g-slider");
+const bSlider = document.getElementById("b-slider");
+const aSlider = document.getElementById("a-slider");
 
-rSlider.addEventListener("change", function () {
-   lastColorChange = "rgba";
-   object.style.backgroundColor = `rgba(${this.value}, ${gSlider.value}, ${bSlider.value}, ${aSlider.value})`;
+let rgbaSliders = document.querySelectorAll(".rgba-slider-group input");
+
+rgbaSliders.forEach((element) => {
+   element.addEventListener("change", function () {
+      object.style.backgroundColor = `rgba(${rSlider.value}, ${gSlider.value}, ${bSlider.value}, ${aSlider.value})`;
+   });
 });
-
-gSlider.addEventListener("change", function () {
-   lastColorChange = "rgba";
-   object.style.backgroundColor = `rgba(${rSlider.value}, ${this.value}, ${bSlider.value}, ${aSlider.value})`;
-});
-
-bSlider.addEventListener("change", function () {
-   lastColorChange = "rgba";
-   object.style.backgroundColor = `rgba(${rSlider.value}, ${gSlider.value}, ${this.value}, ${aSlider.value})`;
-});
-
-aSlider.addEventListener("change", function () {
-   lastColorChange = "rgba";
-   object.style.backgroundColor = `rgba(${rSlider.value}, ${gSlider.value}, ${bSlider.value}, ${this.value})`;
-});
-
-//  <div class="slider-item rgba-container">
-//             <label class="slider-label">RGBA
-//             <div class="slider-values"></div>
-//             <!-- Ok to have multiple input tags with same name -->
-//             <input type="range" name="rgba" class="r-slider" max="255" min="0" value="0">
-//             <input type="range" name="rgba" class="g-slider" max="255" min="0" value="0">
-//             <input type="range" name="rgba" class="b-slider" max="255" min="0" value="0">
-//             <input type="range" name="rgba" class="a-slider" max="1" min="0" step="0.01" value="1">
-//             </div>
-//             </label>
-//         </div>
