@@ -200,17 +200,30 @@ incorrectHexInput.style.textAlign = "center";
 incorrectHexInput.style.backgroundColor = "rgb(248, 244, 182)";
 incorrectHexInput.style.borderRadius = "0.5em";
 incorrectHexInput.style.border = "0.1em solid black";
+incorrectHexInput.style.marginTop = "4.5em";
+incorrectHexInput.style.marginLeft = "1em";
 incorrectHexInput.style.visibility = "hidden";
+
+const hideMessage = () => {
+   incorrectHexInput.style.visibility = "hidden";
+};
+
+const showMessage = () => {
+   incorrectHexInput.style.visibility = "visible";
+};
 
 hexInput.addEventListener("input", function () {
    if (hexInput.value.length === 0) {
-      incorrectHexInput.style.visibility = "hidden";
+      hideMessage();
       hexInput.style.border = "none";
    } else if (!/^[0-9a-fA-F]+$/.test(hexInput.value)) {
       //Content CSS property not applicable to HTML elements directly through the style property.
       incorrectHexInput.textContent =
          "Please enter a value between a-f and 0-9";
-      incorrectHexInput.style.visibility = "visible";
+      showMessage();
+      setTimeout(() => {
+         hideMessage();
+      }, 2500);
       hexInput.style.border = "0.25em solid red";
    } else {
       incorrectHexInput.style.visibility = "hidden";
@@ -221,12 +234,15 @@ hexInput.addEventListener("input", function () {
 submitHexInput.addEventListener("click", function () {
    lastColorChange = "hex";
    if (hexInput.value.length !== 6 && hexInput.value.length !== 3) {
-      incorrectHexInput.style.visibility = "visible";
       incorrectHexInput.textContent =
          "Please enter a value 3 or 6 characters in length";
+      showMessage();
+      setTimeout(() => {
+         hideMessage();
+      }, 3000);
       hexInput.style.border = "0.15em solid red";
    } else {
-      incorrectHexInput.style.visibility = "hidden";
+      hideMessage();
       hexInput.style.border = "0.1em solid black";
       object.style.backgroundColor = "#" + hexInput.value;
    }
